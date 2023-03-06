@@ -1,20 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 const Counter = () => {
+  const [count,setCount]=useState(0)
+  const handleTask=(allo)=>{
+    if(allo==="inc"){
+      setCount(count=>count+1)
+    }
+    else{
+      if(count>0)
+      setCount(count=>count-1)
+    }
+  }
   return (
     <>
       <View style={styles.topContainer}>
         <View style={styles.sectionStyles}>
-          <Text style={styles.sectionStyle}>3</Text>
+          <Text style={styles.sectionStyle}>{count}</Text>
         </View>
         <View style={styles.container}>
-          <View style={styles.box1}>
+        <TouchableOpacity 
+        style={styles.box1} onPress={()=>handleTask("inc")}>
+        <View >
             <Text style={styles.plus}>+</Text>
           </View>
-          <View style={styles.box2}>
+        </TouchableOpacity>
+        <TouchableOpacity 
+        style={styles.box2} onPress={()=>handleTask()}>
+        <View >
             <Text style={styles.minus}>-</Text>
           </View>
+        </TouchableOpacity>
+         
+         
         </View>
       </View>
     </>
