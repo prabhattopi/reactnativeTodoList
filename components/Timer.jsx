@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 let id;
 const Timer = () => {
     const [start,setStart]=useState(0)
+    const [min,setMin]=useState(0)
+    useEffect(() => {
+      if(start===100){
+        setMin(min=>min+=1)
+        setStart(0)
+      }
+    }, [start])
+    
     const startTimer=()=>{
         id=setInterval(() => {
             setStart(start=>start+=1); 
-        },1000);
+        },10);
 
     }
     const stopTimer=()=>{
@@ -14,7 +22,8 @@ const Timer = () => {
     }
     const resetTimer=()=>{
         clearTimeout(id);
-        setStart(0);
+        setStart(0)
+        setMin(0)
  
 
     }
@@ -22,7 +31,7 @@ const Timer = () => {
         <>
           <View style={styles.topContainer}>
             <View style={styles.sectionStyles}>
-              <Text style={styles.sectionStyle}>{start}</Text>
+              <Text style={styles.sectionStyle}>{min<10?`0${min}`:min}:{start<10?`0${start}`:start}</Text>
             </View>
             <View style={styles.container}>
             <TouchableOpacity 
