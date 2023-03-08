@@ -1,20 +1,21 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const TimerCard = (props) => {
+const TimerCard = ({lapobjs,count}) => {
   return (
     <View style={styles.item}>
     <View style={styles.itemLeft}>
-      <Text style={styles.itemText}>{props.text}</Text>
+      <Text style={styles.itemText}>Lap {count+1}</Text>
       <View>
-      <Text style={styles.timer}>00:00</Text>
-      <Text style={styles.timer}>08:80</Text>
+      <Text style={styles.timer}>{lapobjs.startSec < 10 ? `0${lapobjs.startSec}` : lapobjs.startSec}:{lapobjs.startMSec < 10 ? `0${lapobjs.startMSec}` : lapobjs.startMSec}</Text>
+      <Text style={styles.timer}>{lapobjs.endSec < 10 ? `0${lapobjs.endSec}` : lapobjs.endSec}:{lapobjs.endMSec < 10 ? `0${lapobjs.endMSec}` : lapobjs.endMSec}
+      </Text>
       </View>
    
     </View>
     <View>
         <Text style={styles.parentDur}>DUR</Text>
-        <Text style={styles.duration}>47s</Text>
+        <Text style={styles.duration}>{lapobjs.dur}s</Text>
     </View>
   </View>
   )

@@ -6,9 +6,11 @@ const Timer = () => {
   const [start, setStart] = useState(0);
   const [min, setMin] = useState(0);
   const [lapObj,setLapObj]=useState({
-    start:"00:00",
-    end:"00:00",
-    dur:"0"
+    startSec:0,
+    startMSec:0,
+    endSec:min,
+    endMSec:start,
+    dur:0,
   })
   const [lap,setLap]=useState([]);
   useEffect(() => {
@@ -32,7 +34,9 @@ const Timer = () => {
     setMin(0);
   };
   const lapCount=()=>{
-     
+    let durationCount=min-lapObj.startSec
+    setLapObj({...lapObj,dur:durationCount,endSec:min,endMSec:start})
+     setLap([...lap,lapObj])
   }
   return (
     <>
@@ -66,8 +70,12 @@ const Timer = () => {
           </TouchableOpacity>
 
       </View>
-      <TimerCard text="Lap1"/>
-      <TimerCard text="Lap1"/>
+      {
+        lap?.map((e,i)=>{
+         return <TimerCard key={i} lapobjs={e} count={i}/>
+        })
+      }
+    
     </>
   );
 };
