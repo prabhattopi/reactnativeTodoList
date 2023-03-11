@@ -8,7 +8,7 @@ const TimerCard = ({lapobjs,count}) => {
       <Text style={styles.itemText}>Lap {count+1}</Text>
       <View>
       <Text style={styles.timer}>{lapobjs.startSec < 10 ? `0${lapobjs.startSec}` : lapobjs.startSec}:{lapobjs.startMSec < 10 ? `0${lapobjs.startMSec}` : lapobjs.startMSec}</Text>
-      <Text style={styles.timer}>{lapobjs.endSec < 10 ? `0${lapobjs.endSec}` : lapobjs.endSec}:{lapobjs.endMSec < 10 ? `0${lapobjs.endMSec}` : lapobjs.endMSec}
+      <Text style={styles.timer}>{lapobjs.endSec < 10 ? `0${lapobjs.endSec}`:lapobjs.endSec}:{lapobjs.endMSec < 10 ? `0${lapobjs.endMSec}`:lapobjs.endMSec}
       </Text>
       </View>
    
